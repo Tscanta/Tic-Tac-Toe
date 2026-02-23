@@ -3,15 +3,23 @@
 using namespace std;
 
 void drawBoard(char *spaces);
+void selectcharac(char &player, char &computer);
 void playerMove(char *spaces, char player);
 void compMove(char *spaces, char computer);
 bool checkWinner(char *spaces, char player, char computer);
 bool checkTie(char *spaces);
 
 int main() {
-    char spaces[9] = {' ', ' ',' ',' ',' ',' ',' ',' ',' '};
+
+    srand(time(0));
+
+    char spaces[9] = {' ', ' ',' ',' ',' ',' ',' ',' ',' '}; //creating an array
+
     char player = 'X';
-    char computer = '0';
+    char computer = 'O';
+
+    selectcharac(player, computer);
+
     bool running = true;
 
     drawBoard(spaces);
@@ -49,8 +57,23 @@ int main() {
     return 0;
 }
 
+void selectcharac(char &player, char &computer)
+{
+    cout << "----------SElECT YOUR CHARACTER----------" << endl;
+    cin >> player;
+    cout << "----------SElECT OPP CHARACTER----------" << endl;
+    cin >> computer;
+
+    //Displaying respective characters
+    cout << "--------------------------------------------------\n";
+    cout << "Your character is: " << player << '\n';
+    cout << "Opponent character is: " << computer << '\n';
+    cout << "--------------------------------------------------\n";
+}
+
 void drawBoard(char *spaces)
 {
+    cout << "LET THE GAME BEGIN!\n";
     cout << '\n';
     cout << "     |     |     " << '\n';
     cout << "  " << spaces[0] << "  |  " << spaces[1] << "  |  " << spaces[2] << "  " << '\n';
@@ -80,7 +103,6 @@ void playerMove(char *spaces, char player)
 
 void compMove(char *spaces, char computer) {
     int number;
-    srand(time(0));
 
     while (true)
     {
